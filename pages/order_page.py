@@ -6,16 +6,11 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from Sprint_6.locators import OrderPageLocators
+from .base_page import BasePage
 
-class OrderPage:
-    def __init__(self, driver):
-        self.driver = driver
-        self.wait = WebDriverWait(driver, 2)
+class OrderPage(BasePage):
 
-    URL = 'https://qa-scooter.praktikum-services.ru/'
-
-    def open(self, url="https://qa-scooter.praktikum-services.ru/"):
-        self.driver.get(url)
+    #URL = 'https://qa-scooter.praktikum-services.ru/'
 
     def cuci(self):
         button = self.wait.until(EC.visibility_of_element_located(OrderPageLocators.Cuci))
@@ -27,7 +22,6 @@ class OrderPage:
         button.click()
 
     def click_order_button_2(self):
-
         button = self.wait.until(EC.element_to_be_clickable(OrderPageLocators.BUTTON_ORDER_LOW))
         self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", button)
         button.click()
@@ -101,7 +95,7 @@ class OrderPage:
         new_window = [w for w in self.driver.window_handles if w != original_window][0]
         self.driver.switch_to.window(new_window)
         self.wait.until(EC.url_contains("https://dzen.ru/?yredirect=true"))
-        return original_window  # Вернём, чтобы тест мог закрыть вкладку и вернуться
+        return original_window
 
     def close_current_tab_and_switch_back(self, original_window):
         self.driver.close()
@@ -110,5 +104,6 @@ class OrderPage:
     def select_metro_station(self):
         self.wait.until(EC.presence_of_element_located(OrderPageLocators.INPUT_METRO)).click()
         self.wait.until(EC.element_to_be_clickable(OrderPageLocators.METRO_OPTION_PARK)).click()
+
     def get_current_url(self):
         return self.driver.current_url

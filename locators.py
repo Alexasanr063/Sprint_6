@@ -50,7 +50,8 @@ class OrderPageLocators:
                           "//button[contains(@class,'Button_Button__ra12g') and contains(@class,'Button_Middle__1CSJM') and text()='Посмотреть статус']")
     LOGO_SCOOTER = (By.XPATH, "//img[@src='/assets/scooter.svg' and @alt='Scooter']")
     LOGO_YANDEX = (By.CLASS_NAME, "Header_LogoYandex__3TSOI")
-
+    URL = 'https://qa-scooter.praktikum-services.ru/'
+    URL_Yandex = 'https://dzen.ru/?yredirect=true'
 
 
 

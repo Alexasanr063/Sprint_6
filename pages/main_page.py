@@ -1,13 +1,8 @@
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from .base_page import BasePage
 
-class FaqSection:
-    def __init__(self, driver):
-        self.driver = driver
-        self.wait = WebDriverWait(driver, 10)
-
-    def open(self, url="https://qa-scooter.praktikum-services.ru/"):
-        self.driver.get(url)
+class FaqSection(BasePage):
 
     def is_clickable(self, locator):
         element = self.driver.find_element(*locator)
